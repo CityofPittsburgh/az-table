@@ -8,7 +8,7 @@ const models = require("../models/activeDirectory");
 // get events generated from outside PA
 router.get("/riskEvents", async (req, res) => {
   const events = [];
-  const query = new azure.TableQuery().where("state ne ?", "pennsylvania");
+  const query = new azure.TableQuery().where("state ne ? or state ne ?", "Pennsylvania", "pennsylvania");
   await callAPI(null).then(() => {
     res.status(200).send(events);
   });
